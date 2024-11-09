@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flask-login-oidc"
+authors = [
+    {name = "Frédérick NEY", email = "frederick.ney@gmail.com"},
+]
+description = "Flask OpenID with flask-login"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {file = "LICENSE"}
+classifiers = [
+"Environment :: Web Environment",
+"Intended Audience :: Developers",
+"Operating System :: OS Independent",
+"Framework :: Flask",
+"Topic :: Software Development :: Libraries :: Python Modules",
+'Programming Language :: Python :: 3.7',
+'Programming Language :: Python :: 3.8',
+'Programming Language :: Python :: 3.9',
+'Programming Language :: Python :: 3.10',
+'Programming Language :: Python :: 3.11',
+'Programming Language :: Python :: 3.12',
+]
+version="1.0.0"
+dependencies = [
+    "authlib",
+    "Flask-Login",
+    "Flask",
+    'importlib-metadata; python_version>"3.7"'
+]
+
+
+[metadata]
+version = {"attr" =  "1.0.0"}
+
+
+[project.urls]
+Homepage = "https://github.com/frederickney/flask-login-saml"
+Documentation = "https://github.com/frederickney/flask-login-saml/blob/master/README.md"
+Repository = "https://github.com/frederickney/flask-login-saml"
+Issues = "https://github.com/frederickney/flask-login-saml/issues"
+source = "https://github.com/frederickney/flask-login-saml"
+
