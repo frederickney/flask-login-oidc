@@ -27,6 +27,7 @@ classifiers = [
 version="1.0.0"
 dependencies = [
     "authlib",
+    "requests",
     "Flask-Login",
     "Flask",
     'importlib-metadata; python_version>"3.7"'
