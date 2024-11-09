@@ -44,7 +44,7 @@ def logout():
 @app.route('/', methods=['GET'])
 @login_required
 def index():
-    return current_user.subject
+    return current_user.email
 
 
 if __name__ == '__main__':
@@ -95,7 +95,7 @@ def logout():
 @app.route('/', methods=['GET'])
 @login_required
 def index():
-    return current_user.subject
+    return current_user.email
 
 
 if __name__ == '__main__':
