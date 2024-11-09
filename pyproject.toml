@@ -39,9 +39,9 @@ version = {"attr" =  "1.0.0"}
 
 
 [project.urls]
-Homepage = "https://github.com/frederickney/flask-login-saml"
-Documentation = "https://github.com/frederickney/flask-login-saml/blob/master/README.md"
-Repository = "https://github.com/frederickney/flask-login-saml"
-Issues = "https://github.com/frederickney/flask-login-saml/issues"
-source = "https://github.com/frederickney/flask-login-saml"
+Homepage = "https://github.com/frederickney/flask-login-oidc"
+Documentation = "https://github.com/frederickney/flask-login-oidc/blob/master/README.md"
+Repository = "https://github.com/frederickney/flask-login-oidc"
+Issues = "https://github.com/frederickney/flask-login-oidc/issues"
+source = "https://github.com/frederickney/flask-login-oidc"
 
