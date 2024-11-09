@@ -2,24 +2,22 @@
 
 __author__ = "Frédérick NEY"
 
-import logging
+import inspect
 import json
+import logging
 import warnings
 
-import inspect
-from authlib.common.errors import AuthlibBaseError
-from authlib.integrations.base_client import OAuthError, InvalidTokenError
-from flask import current_app, flash,  request, redirect, url_for, abort, session
-from flask_login import login_user, logout_user, current_user
+from authlib.integrations.base_client import OAuthError
 from authlib.integrations.flask_client import OAuth, FlaskOAuth2App
-from authlib.jose import jwt, JsonWebToken
 from authlib.integrations.flask_oauth2 import ResourceProtector
-from authlib.oauth2.rfc6749 import OAuth2Token
+from authlib.jose import jwt, JsonWebToken
 from authlib.oauth2.rfc7662 import (
     IntrospectTokenValidator as BaseIntrospectTokenValidator,
 )
-from werkzeug.utils import import_string
 from authlib.oidc.core import CodeIDToken, ImplicitIDToken
+from flask import current_app, flash, request, redirect, url_for, abort
+from flask_login import login_user, logout_user
+from werkzeug.utils import import_string
 
 from .user import OpenIDUser
 
@@ -156,7 +154,7 @@ def _token(token):
         }
 
 
-def _login_oidc_user(oidc_auth, model,  token):
+def _login_oidc_user(oidc_auth, model, token):
     """
 
     :param oidc_auth: oauth client
@@ -184,7 +182,6 @@ def _login_oidc_user(oidc_auth, model,  token):
 
 
 class IntrospectTokenValidator(BaseIntrospectTokenValidator):
-
     flask_oidc = None
 
     def __init__(self, flask_oidc):
@@ -347,13 +344,13 @@ class FlaskOIDC(object):
             raise Exception("{}.{}.login_user: {} not callable".format(__name__, __class__.__name__, callback))
 
     def logout_user(self, callback):
-        if callable(callback) and  not inspect.isclass(callback):
+        if callable(callback) and not inspect.isclass(callback):
             self._logout_user = callback
         else:
             raise Exception("{}.{}.logout_user: {} not callable".format(__name__, __class__.__name__, callback))
 
     def secret(self, callback):
-        if callable(callback) and  not inspect.isclass(callback):
+        if callable(callback) and not inspect.isclass(callback):
             self.load_secrets = callback
         else:
             raise Exception("{}.{}.logout_user: {} not callable".format(__name__, __class__.__name__, callback))

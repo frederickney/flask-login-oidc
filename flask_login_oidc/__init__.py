@@ -2,5 +2,5 @@
 
 __author__ = "Frédérick NEY"
 
-from .user import OpenIDUser
 from .client import FlaskOIDC
+from .user import OpenIDUser

@@ -3,11 +3,12 @@
 __author__ = "Frédérick NEY"
 
 import json
-from datetime import datetime
-import authlib.jose.errors
-from authlib.integrations.flask_client import FlaskOAuth2App
 from base64 import b64encode
+from datetime import datetime
+
+import authlib.jose.errors
 import requests
+from authlib.integrations.flask_client import FlaskOAuth2App
 
 
 class OpenIDUser(object):
@@ -44,7 +45,7 @@ class OpenIDUser(object):
                         user = OpenIDUser(**userinfo)
                     return user
             except authlib.jose.errors.ExpiredTokenError as e:
-                #next ?
+                # next ?
                 pass
         return None
 
