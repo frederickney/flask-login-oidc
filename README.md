@@ -1,4 +1,4 @@
-# flask-login-saml
+# flask-login-oidc
 Flask OpenID with flask-login
 
 ## Installation
