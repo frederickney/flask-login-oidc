@@ -118,7 +118,7 @@ Must be used after FlaskOIDC.init_app() or FlaskOIDC() if you are not using it
 oidc.user_model(UserModel)
 ```
 
-See [user.py](https://github.com/frederickney/flask-login-oidc/blob/main/flask_login_oidc/user.py) for more information about user model
+See [user.py](https://github.com/frederickney/flask-login-oidc/blob/master/flask_login_oidc/user.py for more information about user model
 
 ## Custom login
 
