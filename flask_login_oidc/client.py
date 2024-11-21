@@ -15,7 +15,7 @@ from authlib.oauth2.rfc7662 import (
     IntrospectTokenValidator as BaseIntrospectTokenValidator,
 )
 from authlib.oidc.core import CodeIDToken, ImplicitIDToken
-from flask import current_app, flash, request, redirect, url_for, abort
+from flask import current_app, flash, request, redirect, url_for, abort, session
 from flask_login import login_user, logout_user
 from werkzeug.utils import import_string
 
@@ -217,7 +217,7 @@ class FlaskOIDC(object):
 
     def __init__(self, app=None, prefix='OIDC'):
         self.client_secrets = None
-        self._prefix = prefix
+        self._prefix = prefix.upper()
         self._login_user = _login_oidc_user
         self._logout_user = _logout_oidc_user
         self._get_client = _get_client
@@ -293,11 +293,16 @@ class FlaskOIDC(object):
             logging.exception("Could not get the access token")
             abort(401, str(e))
         self._login_user(oauth_client, self._user_model, token)
-        return_to = request.url_root
+        return_to = session.get('next', request.url_root)
+        session.pop('next')
         return redirect(return_to)
 
     def login(self):
         oauth_client = self.oidc_prepare()
+        return_to = request.args.get('next', '')
+        if not return_to.startswith("/") and not return_to.startswith(request.url_root):
+            return_to = "/"
+        session['next'] = return_to
         if current_app.config["{}_OVERWRITE_REDIRECT_URI".format(self._prefix)]:
             redirect_uri = current_app.config["{}_OVERWRITE_REDIRECT_URI".format(self._prefix)]
         elif current_app.config["{}_CALLBACK_ROUTE".format(self._prefix)]:
