@@ -297,7 +297,7 @@ class FlaskOIDC(object):
         session.pop('next')
         return redirect(return_to)
 
-    def login(self):
+    def login(self, overide_redirect=None):
         oauth_client = self.oidc_prepare()
         return_to = request.args.get('next', '')
         if not return_to.startswith("/") and not return_to.startswith(request.url_root):
@@ -310,7 +310,10 @@ class FlaskOIDC(object):
                 f"{request.url_root.rstrip('/')}{current_app.config['{}_CALLBACK_ROUTE'.format(self._prefix)]}"
             )
         else:
-            redirect_uri = url_for("{}.authorize".format(self._prefix.lower()), _external=True)
+            redirect_uri = (
+                url_for("{}.authorize".format(self._prefix.lower()), _external=True) if overide_redirect is None else
+                url_for("{}.authorize".format(overide_redirect), _external=True)
+            )
         return oauth_client.authorize_redirect(redirect_uri)
 
     def logout(self):
