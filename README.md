@@ -122,7 +122,7 @@ See [user.py](https://github.com/frederickney/flask-login-oidc/blob/master/flask
 
 ## Custom login
 
-Must be used after FlaskOIDC.init_app() or FlaskOIDC() if you are not using it
+Must be used before FlaskOIDC.init_app() and after FlaskOIDC()
 
 ```python
 def login(oidc_auth, model,  token):
@@ -141,7 +141,7 @@ oidc.login_user(login)
 
 ## Custom logout
 
-Must be used after FlaskOIDC.init_app() or FlaskOIDC() if you are not using it
+Must be used before FlaskOIDC.init_app() and after FlaskOIDC()
 
 ```python
 
@@ -159,7 +159,7 @@ oidc.logout_user(logout)
 
 ## Custom client
 
-Must be used after FlaskOIDC.init_app() or FlaskOIDC() if you are not using it
+Must be used before FlaskOIDC.init_app() and after FlaskOIDC()
 
 ```python
 def client(prefix):
@@ -177,7 +177,7 @@ oidc.client(client)
 
 ## Custom secret load
 
-Must be used after FlaskOIDC.init_app() or FlaskOIDC() if you are not using it
+Must be used before FlaskOIDC.init_app() and after FlaskOIDC()
 
 ```python
 def secret(app, prefix):
